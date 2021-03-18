@@ -22,5 +22,10 @@ class UsersController < ApplicationController
       @upcoming_events = current_user.events.upcoming_events
       @past_events = current_user.events.past_events
     end
+
+    private
+    def user_params
+      params.require(:user).permit(:email, :username)
+    end
   end
   
