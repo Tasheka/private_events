@@ -20,8 +20,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @creator = User.find(params[:id])
-    @user_events = Event.where(user_id: params[:id])
+    @user = User.find(params[:id])
+    @events = Event.where(user_id: params[:id])
   end
 
   private
