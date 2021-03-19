@@ -20,6 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user_events = Event.where(user_id: cookies[:user_id])
     @events = Event.all
   end
 
