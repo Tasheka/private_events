@@ -9,8 +9,7 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
-    event = Event.find(params[:id])
-    @creator = User.find(event.user_id)
+    @creator = Event.find(params[:id]).creator
   end
 
   # GET /events/new
