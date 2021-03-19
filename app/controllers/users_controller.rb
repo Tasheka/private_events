@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :user_signed_in?, only: %i[show]
+  before_action :user_signed_in?, only: %i[index show]
 
   def index
     @users = User.all
@@ -13,7 +13,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       cookies[:user_id] = @user.id
-      puts cookies[:user_id]
       redirect_to root_path
     else
       render 'new'
@@ -21,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    
+    @events = Event.all
   end
 
   private
