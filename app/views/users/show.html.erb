@@ -1,9 +1,22 @@
-<%= link_to 'New Event', new_event_path %>
+<%= link_to 'User', new_event_path %>
 <br>
 <br>
 
-<h1>Your Events</h1>
-<hr />
+<h1>User</h1>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @creator.username %>
+</p>
+
+<p>
+  <strong>Creator:</strong>
+  <%= @creator.email %>
+</p>
+
+<br>
+<h1>Events</h1>
+<br>
 
 <table>
   <thead>
@@ -17,7 +30,7 @@
   </thead>
 
   <tbody>
-    <% @events.each do |event| %>
+    <% @user_events.each do |event| %>
       <tr>
         <td><%= event.location %></td>
         <td><%= event.date %></td>
@@ -30,3 +43,4 @@
 </table>
 
 <br>
+

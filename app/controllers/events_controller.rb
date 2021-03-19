@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
   def show
     @creator = Event.find(params[:id]).creator
+    @attendee = Invitation.where(event_id: params[:id])
   end
 
   # GET /events/new
@@ -23,7 +24,8 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
-    @event = current_user.events.build(event_params)
+    @event =  Event.new(event_params)
+    @event.user_id = cookies[:user_id]
 
     respond_to do |format|
       if @event.save

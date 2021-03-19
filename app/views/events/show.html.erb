@@ -7,7 +7,27 @@
 
 <p>
   <strong>Attendees:</strong>
-  <%= @attendees %>
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @attendee.each do |attendee| %>
+        <tr>
+          <td><%= attendee.username %></td>
+          <td><%= attendee.email %></td>
+          <td><%= link_to 'Show', user %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </p>
 
 <% if same_as_event_creator %>
