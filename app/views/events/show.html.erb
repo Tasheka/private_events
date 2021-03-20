@@ -2,8 +2,10 @@
 
 <p>
   <strong>Creator:</strong>
-  <%= @creator.username %>
+  <%= @creator %>
 </p>
+
+<%= link_to 'Invite', new_invitation_path(@creator.id)%>
 
 <p>
   <strong>Attendees:</strong>
@@ -19,21 +21,19 @@
     </thead>
 
     <tbody>
-      <% @attendee.each do |attendee| %>
-        <tr>
-          <td><%= attendee.username %></td>
-          <td><%= attendee.email %></td>
-          <td><%= link_to 'Show', user %></td>
-        </tr>
-      <% end %>
+      <tr>
+        <td><%= @event.location %></td>
+        <td><%= @event.date %></td>
+        <td><%= @event.name %></td>
+        <td><%= @event.description %></td>
+      </tr>
     </tbody>
   </table>
 </p>
 
 <% if same_as_event_creator %>
   <%= link_to 'Edit', edit_event_path(@event) %> |
-<% else %>
-  <%= link_to 'Attend', create_invitation_path(event_id: @event.id, user_id: @creator.id) %> |
+  <%= link_to 'Invite', new_invitation_path %> |
 <% end %> <%= link_to 'Back', root_path %>
 
 

@@ -5,13 +5,18 @@
 
 <p>
   <strong>Creator:</strong>
-  <%= @user.username %>
+  <%= @creator.username %>
 </p>
 
 <p>
   <strong>Creator:</strong>
   <%= @user.email %>
 </p>
+
+<div class="col">
+<h2>Created events</h2>
+<%= list_events(@user_events) %>
+</div>
 
 <br>
 <h1>Past Events</h1>
