@@ -31,7 +31,7 @@
   </table>
 </p>
 
-<% if same_as_event_creator %>
+<% if same_as_event_creator(cookies[:user_id]) %>
   <%= link_to 'Edit', edit_event_path(@event) %> |
   <%= link_to 'Invite', new_invitation_path %> |
 <% end %> <%= link_to 'Back', root_path %>

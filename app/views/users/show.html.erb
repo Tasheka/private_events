@@ -4,22 +4,20 @@
 <h1>User</h1>
 
 <p>
-  <strong>Creator:</strong>
-  <%= @creator.username %>
+  <strong>Username:</strong>
+  <%= @user.username %>
 </p>
 
 <p>
-  <strong>Creator:</strong>
+  <strong>Email:</strong>
   <%= @user.email %>
 </p>
 
-<div class="col">
-<h2>Created events</h2>
-<%= list_events(@user_events) %>
-</div>
+<br />
 
-<br>
-<h1>Past Events</h1>
+<h1>Created events</h1>
+
+<h2>Past Events</h2>
 <br>
 
 <table>
@@ -41,13 +39,16 @@
         <td><%= event.name %></td>
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Destroy', event %></td>
+        <td><%= link_to 'Edit', event %></td>
+        <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<h1>upcoming Events</h1>
+<h2>Upcoming Events</h2>
 <br>
 
 
@@ -70,7 +71,12 @@
         <td><%= event.name %></td>
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Destroy', event %></td>
+        <td><%= link_to 'Edit', event %></td>
+        <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to 'Back', root_path %>
