@@ -33,8 +33,8 @@
             <td><%= link_to 'Show', event %></td>
             <% if same_as_event_creator(event.user_id)%>
             <td><%= link_to 'Destroy', event %></td>
-            <td><%= link_to 'Edit', event %></td>
-            <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
+            <td><%= link_to 'Edit', edit_event_path(event) %></td>
+            <td><%= link_to 'Invite', new_invitation_path(event.id) %></td>
             <% end %>
           <% end %>
           </tr>
@@ -69,7 +69,7 @@
           <td><%= link_to 'Show', event %></td>
           <% if same_as_event_creator(event.user_id)%>
           <td><%= link_to 'Destroy', event %></td>
-          <td><%= link_to 'Edit', event %></td>
+          <td><%= link_to 'Edit', edit_event_path(event) %></td>
           <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
           <% end %>
         <% end %>

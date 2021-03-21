@@ -45,7 +45,7 @@
 <br>
 
 <% if same_as_event_creator(cookies[:user_id]) %>
-  <%= link_to 'Invite', new_invitation_path %> |
+  <%= link_to 'Invite', new_invitation_path(@event.id) %> |
   <%= link_to 'Edit', edit_event_path(@event) %>
 <% end %>
 

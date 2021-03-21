@@ -40,7 +40,7 @@
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Destroy', event %></td>
-        <td><%= link_to 'Edit', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
       </tr>
     <% end %>
@@ -70,7 +70,7 @@
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Destroy', event %></td>
-        <td><%= link_to 'Edit', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
       </tr>
     <% end %>
