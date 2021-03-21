@@ -1,39 +1,56 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Creator:</strong>
-  <%= @creator %>
-</p>
-
-<%= link_to 'Invite', new_invitation_path(@creator.id)%>
+<h1>Event</h1>
 
 <p>
-  <strong>Attendees:</strong>
-  <br>
+  <h3>Creator</h3>
+  
+  <p>
+    <strong>Username:</strong>
+    <%= @creator.username %>
+  </p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td><%= @event.location %></td>
-        <td><%= @event.date %></td>
-        <td><%= @event.name %></td>
-        <td><%= @event.description %></td>
-      </tr>
-    </tbody>
-  </table>
+  <p>
+    <strong>Email:</strong>
+    <%= @creator.email %>
+  </p>
 </p>
+
+<br>
+
+<p>
+  <h3>Event Details</h3>
+
+  <p>
+    <strong>Username:</strong>
+    <%= @event.location %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @event.date %>
+  </p>
+
+  <p>
+    <strong>Username:</strong>
+    <%= @event.name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @event.description %>
+  </p>
+</p>
+
+<br>
 
 <% if same_as_event_creator(cookies[:user_id]) %>
-  <%= link_to 'Edit', edit_event_path(@event) %> |
   <%= link_to 'Invite', new_invitation_path %> |
-<% end %> <%= link_to 'Back', root_path %>
+  <%= link_to 'Edit', edit_event_path(@event) %>
+<% end %>
+
+<br>
+
+<%= link_to 'Back', root_path %>
 
 

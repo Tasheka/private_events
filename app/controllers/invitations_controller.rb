@@ -6,8 +6,9 @@ class InvitationsController < ApplicationController
     end
 
     def new
-        @invitation = Invitation.new
-      end
+        @events = Event.all 
+        @users = User.all
+    end
 
     def create
         @invitation =  Invitation.new(invitation_params)
