@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
     before_action :user_signed_in?
 
-    def show
+    def index
         @users = User.all
     end
     
@@ -10,9 +10,11 @@ class InvitationsController < ApplicationController
     end
 
     def create
-        @username = invitation_params[:username]
-        @user = User.where(username: @username).pluck(:user_id)
-        @invitation = Invitation.new(attendee_id: @user)
+        @email = invitation_params[:email]
+        @user = User.where(email: @email).pluck(:id)
+        @invitation = Invitation.new(invitation_params)
+        puts 'hi' 
+        puts @invitation
         if @invitation.save
             redirect_to root_path
           else
@@ -44,6 +46,6 @@ class InvitationsController < ApplicationController
       end
 
     def invitation_params
-        params.permit(:event_id, :attendee_id)
+        params.permit(:event_id, :attendee_id, :email)
     end
 end
