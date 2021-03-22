@@ -1,0 +1,10 @@
+<h1> Invite </h1>
+
+    <% @users.each do |user| %>
+      <%= form_with model: @invitation, method: :get do |f| %>
+         <%= user.username %> 
+         <%= user.email %> 
+         <%= f.submit 'Invite' %>
+      <% end %>   
+      <br />
+    <% end %>

@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @users = User.all
     @events = Event.where(user_id: params[:id])
   end
 

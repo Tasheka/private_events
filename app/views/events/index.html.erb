@@ -34,7 +34,7 @@
             <% if same_as_event_creator(event.user_id)%>
             <td><%= link_to 'Destroy', event %></td>
             <td><%= link_to 'Edit', edit_event_path(event) %></td>
-            <td><%= link_to 'Invite', new_invitation_path(event.id) %></td>
+            <td><%= link_to 'Invite', invitation_path(event.id) %></td>
             <% end %>
           <% end %>
           </tr>
@@ -70,7 +70,7 @@
           <% if same_as_event_creator(event.user_id)%>
           <td><%= link_to 'Destroy', event %></td>
           <td><%= link_to 'Edit', edit_event_path(event) %></td>
-          <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
+          <td><%= link_to 'Invite', invitation_path(event.id)%></td>
           <% end %>
         <% end %>
         </tr>
