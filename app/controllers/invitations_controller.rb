@@ -10,16 +10,16 @@ class InvitationsController < ApplicationController
     end
 
     def create
-        @email = invitation_params[:email]
-        @user = User.where(email: @email).pluck(:id)
-        @invitation = Invitation.new(invitation_params)
-        puts 'hi' 
-        puts @invitation
-        if @invitation.save
-            redirect_to root_path
-          else
-            render 'new'
-          end
+      @email = invitation_params[:email]
+      @user = User.where(email: @email).pluck(:id)
+      @invitation = Invitation.new(attendee_id: @user)
+      puts 'hi' 
+      puts @invitation
+      if @invitation.save
+          redirect_to root_path
+        else
+          render 'new'
+        end
     end
     
 
@@ -46,6 +46,6 @@ class InvitationsController < ApplicationController
       end
 
     def invitation_params
-        params.permit(:event_id, :attendee_id, :email)
+        params.permit(:id, :email, :authenticity_token, :commit)
     end
 end

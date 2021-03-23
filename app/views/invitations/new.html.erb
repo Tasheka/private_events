@@ -2,7 +2,6 @@
 
       <%= form_with model: @invitation, method: :post do |f| %>
         Enter a user's email: <%= text_field_tag :email %>
-        Enter an event: <%= text_field_tag :event_id %>
          <%= f.submit 'Invite' %>
       <% end %>   
       <br />
