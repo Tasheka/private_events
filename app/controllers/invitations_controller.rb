@@ -2,27 +2,26 @@ class InvitationsController < ApplicationController
     before_action :user_signed_in?
 
     def index
-        @invitations = Invitation.all
-    end
-
-    def new
-        @events = Event.all 
         @users = User.all
+    end
+    
+    def new
+        @invitation = Invitation.new
     end
 
     def create
-        @invitation =  Invitation.new(invitation_params)
-
-        respond_to do |format|
-            if @invitation.save
-                format.html { redirect_to event_url(params[:id]), notice: "Invitation was successfully created." }
-                format.json { render :show, status: :created, location: @invitation }
-            else
-                format.html { render :new, status: :unprocessable_entity }
-                format.json { render json: @invitation.errors, status: :unprocessable_entity }
-            end
+      @email = invitation_params[:email]
+      @user = User.where(email: @email).pluck(:id)
+      @invitation = Invitation.new(attendee_id: @user)
+      puts 'hi' 
+      puts @invitation
+      if @invitation.save
+          redirect_to root_path
+        else
+          render 'new'
         end
     end
+    
 
     def destroy
         @invitation.destroy
@@ -47,6 +46,6 @@ class InvitationsController < ApplicationController
       end
 
     def invitation_params
-        params.permit(:event_id, :attendee_id)
+        params.permit(:id, :email, :authenticity_token, :commit)
     end
 end
