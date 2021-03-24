@@ -3,6 +3,7 @@ class InvitationsController < ApplicationController
 
     def index
         @users = User.all
+
     end
     
     def new
@@ -14,8 +15,6 @@ class InvitationsController < ApplicationController
       @email = invitation_params[:email]
       @user = User.where(email: @email).pluck(:id)
       @invitation = Invitation.new(attendee_id: @user, event_id: invitation_params[:event_id], email: invitation_params[:email])
-      puts 'hi' 
-      puts @invitation
       if @invitation.save
           redirect_to root_path
         else

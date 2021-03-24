@@ -90,9 +90,9 @@
   </thead>
 
   <tbody>
-    <% @invites.each do |invite| %>
+    <% @past_events.each do |invite| %>
       <tr>
-        <td><%= invite.event_id %></td>
+        <td><%= invite.attended_event.name %></td>
       </tr>
     <% end %>
   </tbody>
@@ -109,9 +109,9 @@
   </thead>
 
   <tbody>
-    <% @invites.each do |invite| %>
-      <tr>-
-        <td><%= invite.event_id %></td>
+    <% @upcoming_events.each do |invite| %>
+      <tr>
+        <td><%= invite.attended_event.name%></td>
         <
       </tr>
     <% end %>
