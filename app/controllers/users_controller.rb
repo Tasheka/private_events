@@ -23,6 +23,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = User.all
     @events = Event.where(user_id: params[:id])
+    @invites = Invitation.where(attendee_id: params[:id])
   end
 
   private

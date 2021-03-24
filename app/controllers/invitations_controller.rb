@@ -7,12 +7,13 @@ class InvitationsController < ApplicationController
     
     def new
         @invitation = Invitation.new
+        @event = params[:event_id]
     end
 
     def create
       @email = invitation_params[:email]
       @user = User.where(email: @email).pluck(:id)
-      @invitation = Invitation.new(attendee_id: @user)
+      @invitation = Invitation.new(attendee_id: @user, event_id: invitation_params[:event_id], email: invitation_params[:email])
       puts 'hi' 
       puts @invitation
       if @invitation.save
@@ -46,6 +47,6 @@ class InvitationsController < ApplicationController
       end
 
     def invitation_params
-        params.permit(:id, :email, :authenticity_token, :commit)
+        params.permit(:id, :email, :authenticity_token, :commit, :event_id)
     end
 end

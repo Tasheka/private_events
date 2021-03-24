@@ -41,7 +41,7 @@
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Destroy', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
+        <td><%= link_to 'Invite', "invitations/new/#{event.id}"%></td>
       </tr>
     <% end %>
   </tbody>
@@ -71,7 +71,48 @@
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Destroy', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
+        <td><%= link_to 'Invite', "invitations/new/#{event.id}"%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Attended Events</h1>
+
+<h3>Past Events</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invites.each do |invite| %>
+      <tr>
+        <td><%= invite.event_id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h3>Upcoming Events</h3>
+<table>
+  <thead>
+    <tr>
+    <th>Event</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invites.each do |invite| %>
+      <tr>-
+        <td><%= invite.event_id %></td>
+        <
       </tr>
     <% end %>
   </tbody>
