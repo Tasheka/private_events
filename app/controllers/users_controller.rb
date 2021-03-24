@@ -24,13 +24,16 @@ class UsersController < ApplicationController
     @users = User.all
     @events = Event.where(user_id: params[:id])
     @invites = Invitation.where(attendee_id: params[:id])
-    @past_events = []
-    @upcoming_events = []
-    @invites.each do |invite|
-      if invite.date < Time.now 
-        @past_events << invite
-      else
-        @upcoming_events << invite
+    @past_invites = []
+    @upcoming_invites = []
+
+    @events.each do |event|
+      @invites.each do |invite|
+        if event.date < invite.created_at 
+          @past_events << invite
+        else
+          @upcoming_events << invite
+      end
     end
   end
 

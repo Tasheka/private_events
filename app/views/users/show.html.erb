@@ -16,7 +16,7 @@
 
 <br />
 
-<h1>Created events</h1>
+<h1>My Events</h1>
 
 <h3>Past Events</h3>
 
@@ -77,7 +77,7 @@
   </tbody>
 </table>
 
-<h1>Attended Events</h1>
+<h1>Invitations</h1>
 
 <h3>Past Events</h3>
 
@@ -90,7 +90,7 @@
   </thead>
 
   <tbody>
-    <% @past_events.each do |invite| %>
+    <% @past_invites.each do |invite| %>
       <tr>
         <td><%= invite.attended_event.name %></td>
       </tr>
@@ -109,7 +109,7 @@
   </thead>
 
   <tbody>
-    <% @upcoming_events.each do |invite| %>
+    <% @upcoming_invites.each do |invite| %>
       <tr>
         <td><%= invite.attended_event.name%></td>
         <
