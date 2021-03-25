@@ -79,12 +79,14 @@
 
 <h1>Invitations</h1>
 
-<h3>Past Events</h3>
+<h3>Past Invitations</h3>
 
 <table>
   <thead>
     <tr>
       <th>Event</th>
+      <th>Location</th>
+      <th>Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -93,17 +95,21 @@
     <% @past_invites.each do |invite| %>
       <tr>
         <td><%= invite.attended_event.name %></td>
+        <td><%= invite.attended_event.location%></td>
+        <td><%= invite.attended_event.date%></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-<h3>Upcoming Events</h3>
+<h3>Upcoming Invitations</h3>
 <table>
   <thead>
     <tr>
-    <th>Event</th>
+      <th>Event</th>
+      <th>Location</th>
+      <th>Date</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -112,7 +118,8 @@
     <% @upcoming_invites.each do |invite| %>
       <tr>
         <td><%= invite.attended_event.name%></td>
-        <
+        <td><%= invite.attended_event.location%></td>
+        <td><%= invite.attended_event.date%></td>
       </tr>
     <% end %>
   </tbody>

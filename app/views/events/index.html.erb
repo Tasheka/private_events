@@ -24,20 +24,20 @@
         </thead>
 
         <tbody>
-          <tr>
           <% @past_events.each do |event| %>
-            <td><%= event.location %></td>
-            <td><%= event.date %></td>
-            <td><%= event.name %></td>
-            <td><%= event.description %></td>
-            <td><%= link_to 'Show', event %></td>
-            <% if same_as_event_creator(event.user_id)%>
-            <td><%= link_to 'Destroy', event %></td>
-            <td><%= link_to 'Edit', edit_event_path(event) %></td>
-            <td><%= link_to 'Invite', new_invitation_path(event.id) %></td>
-            <% end %>
+            <tr>
+              <td><%= event.location %></td>
+              <td><%= event.date %></td>
+              <td><%= event.name %></td>
+              <td><%= event.description %></td>
+              <td><%= link_to 'Show', event %></td>
+              <% if same_as_event_creator(event.user_id)%>
+                <td><%= link_to 'Destroy', event %></td>
+                <td><%= link_to 'Edit', edit_event_path(event) %></td>
+                <td><%= link_to 'Invite', new_invitation_path(event.id) %></td>
+              <% end %>
+            </tr>
           <% end %>
-          </tr>
         </tbody>
       </table>
     </p>
@@ -60,20 +60,20 @@
       </thead>
 
       <tbody>
-        <tr>
         <% @upcoming_events.each do |event| %>
-          <td><%= event.location %></td>
-          <td><%= event.date %></td>
-          <td><%= event.name %></td>
-          <td><%= event.description %></td>
-          <td><%= link_to 'Show', event %></td>
-          <% if same_as_event_creator(event.user_id)%>
-          <td><%= link_to 'Destroy', event %></td>
-          <td><%= link_to 'Edit', edit_event_path(event) %></td>
-          <td><%= link_to 'Invite', new_invitation_path(event.id)%></td>
-          <% end %>
+          <tr>
+            <td><%= event.location %></td>
+            <td><%= event.date %></td>
+            <td><%= event.name %></td>
+            <td><%= event.description %></td>
+            <td><%= link_to 'Show', event %></td>
+            <% if same_as_event_creator(event.user_id)%>
+              <td><%= link_to 'Destroy', event %></td>
+              <td><%= link_to 'Edit', edit_event_path(event) %></td>
+              <td><%= link_to 'Invite', new_invitation_path(event.id) %></td>
+            <% end %>
+          </tr>
         <% end %>
-        </tr>
       </tbody>
     </table>
   </p>

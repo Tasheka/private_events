@@ -19,53 +19,61 @@
 <br />
 
 <p>
-  <h3>Attendee</h3>
-  
-  <p>
-    <strong>Username:</strong>
-    <%= @attendee %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= @attendee %>
-  </p>
-</p>
-
-<br>
-
-<p>
   <h3>Event Details</h3>
 
   <p>
-    <strong>Username:</strong>
+    <strong>Location:</strong>
     <%= @event.location %>
   </p>
 
   <p>
-    <strong>Email:</strong>
+    <strong>Date:</strong>
     <%= @event.date %>
   </p>
 
   <p>
-    <strong>Username:</strong>
+    <strong>Name:</strong>
     <%= @event.name %>
   </p>
 
   <p>
-    <strong>Email:</strong>
+    <strong>Description:</strong>
     <%= @event.description %>
   </p>
 </p>
 
-<br>
+<br />
 
-<% if same_as_event_creator(cookies[:user_id]) %>
+<h3>Invitees</h3>
+
+<p>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Enail</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @invites.each do |invite| %>
+        <tr>
+          <td><%= invite.attendee.username %></td>
+          <td><%= invite.attendee.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+<br />
+
+<% if same_as_event_creator(@event.user_id) %>
   <%= link_to 'Invite', new_invitation_path(@event.id) %> |
   <%= link_to 'Edit', edit_event_path(@event) %>
 <% end %>
 
-<br>
+<br />
 
 <%= link_to 'Back', root_path %>
 

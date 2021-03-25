@@ -10,10 +10,10 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
+    @event = Event.find(params[:id])
     @creator = Event.find(params[:id]).creator
-    @attendee = Invitation.all
-    @user = User.all
     @invites = Invitation.where(event_id: params[:id])
+    puts @invites
   end
 
   # GET /events/new

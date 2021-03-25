@@ -21,7 +21,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.all
     @events = Event.where(user_id: params[:id])
     @invites = Invitation.where(attendee_id: params[:id])
     @past_invites = []
@@ -30,9 +29,10 @@ class UsersController < ApplicationController
     @events.each do |event|
       @invites.each do |invite|
         if event.date < invite.created_at 
-          @past_events << invite
+          @past_invites << invite
         else
-          @upcoming_events << invite
+          @upcoming_invites << invite
+        end
       end
     end
   end
