@@ -4,24 +4,24 @@ class InvitationsController < ApplicationController
   before_action :user_signed_in?
 
   def index
-    @users = User.all
+    @invitations = Invitation.all
   end
 
   def new
     @invitation = Invitation.new
     @event = params[:event_id]
+    @users = User.all
   end
 
   def create
-    @email = invitation_params[:email]
-    @user = User.where(email: @email).pluck(:id)
-    @invitation = Invitation.new(attendee_id: @user, event_id: invitation_params[:event_id],
-                                 email: invitation_params[:email])
+    email = invitation_params[:email]
+    @user = User.where(email: email).pluck(:id)
+    @invitation = Invitation.new(user_id: @user[0], event_id: params[:event_id])
     if @invitation.save
-      redirect_to root_path
-    else
-      render 'new'
-    end
+        redirect_to root_path
+      else
+        render 'new', event_id: params[:event_id]
+      end
   end
 
   def destroy

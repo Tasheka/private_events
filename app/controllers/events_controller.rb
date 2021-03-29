@@ -12,7 +12,10 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
-    @invites = Invitation.where(event_id: params[:id])
+    @invites = Invitation.where(params[:id])
+    puts "Yusif"
+    puts @invites
+    puts params[:id]
   end
 
   # GET /events/new
@@ -26,7 +29,7 @@ class EventsController < ApplicationController
   # POST /events or /events.json
   def create
     @event = current_user.events.build(event_params)
-    
+
     respond_to do |format|
       if @event.save
         format.html { redirect_to root_path, notice: 'Event was successfully created.' }
@@ -65,7 +68,6 @@ class EventsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
-    puts 'Yusif'
   end
 
   # Only allow a list of trusted parameters through.

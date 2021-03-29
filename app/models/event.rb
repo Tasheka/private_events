@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Event < ApplicationRecord
-  belongs_to :user, foreign_key: true, required: false
+  belongs_to :creator, foreign_key: :user_id, class_name: :User, required: false
   has_many :invitations
   has_many :users, through: :invitations
    

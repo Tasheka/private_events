@@ -7,12 +7,12 @@
   
   <p>
     <strong>Username:</strong>
-    <%= @event.user.username %>
+    <%= @event.creator.username %>
   </p>
 
   <p>
     <strong>Email:</strong>
-    <%= @event.user.email %>
+    <%= @event.creator.email %>
   </p>
 </p>
 
@@ -51,15 +51,15 @@
     <thead>
       <tr>
         <th>Username</th>
-        <th>Enail</th>
+        <th>Email</th>
       </tr>
     </thead>
 
     <tbody>
       <% @invites.each do |invite| %>
         <tr>
-          <td><%= invite.attendee.username %></td>
-          <td><%= invite.attendee.email %></td>
+          <td><%= invite.user.username %></td>
+          <td><%= invite.user.email %></td>
         </tr>
       <% end %>
     </tbody>

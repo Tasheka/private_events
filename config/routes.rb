@@ -10,5 +10,4 @@ Rails.application.routes.draw do
   resources :users
   resources :events
   resources :invitations
-  get 'users/invitations/new/:event_id', to: 'invitations#new'
 end

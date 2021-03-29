@@ -16,7 +16,7 @@
 
 <br />
 
-<h1>My Events</h1>
+<h2>My Events</h2>
 
 <h3>Past Events</h3>
 
@@ -32,16 +32,16 @@
   </thead>
 
   <tbody>
-    <% @events.past_events.each do |event| %>
+    <% @created_events.past_events.each do |event| %>
       <tr>
         <td><%= event.location %></td>
         <td><%= event.date %></td>
         <td><%= event.name %></td>
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Destroy', event %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Invite', "invitations/new/#{event.id}"%></td>
+        <td><%= link_to 'Invite', new_invitation_path(:event_id => event.id) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -62,69 +62,20 @@
   </thead>
 
   <tbody>
-    <% @events.upcoming_events.each do |event| %>
+    <% @created_events.upcoming_events.each do |event| %>
       <tr>
         <td><%= event.location %></td>
         <td><%= event.date %></td>
         <td><%= event.name %></td>
         <td><%= event.description %></td>
         <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Destroy', event %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Invite', "invitations/new/#{event.id}"%></td>
+        <td><%= link_to 'Invite', new_invitation_path(:event_id => event.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<h1>Invitations</h1>
-
-<h3>Past Invitations</h3>
-
-<table>
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Location</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @past_invites.each do |invite| %>
-      <tr>
-        <td><%= invite.attended_event.name %></td>
-        <td><%= invite.attended_event.location%></td>
-        <td><%= invite.attended_event.date%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<h3>Upcoming Invitations</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Event</th>
-      <th>Location</th>
-      <th>Date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @upcoming_invites.each do |invite| %>
-      <tr>
-        <td><%= invite.attended_event.name%></td>
-        <td><%= invite.attended_event.location%></td>
-        <td><%= invite.attended_event.date%></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
 
 <%= link_to 'Back', root_path %>

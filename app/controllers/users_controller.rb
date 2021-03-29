@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :user_signed_in?, only: %i[index show]
+  before_action :set_user, only: %i[show]
 
   def index
     @users = User.all
@@ -22,21 +23,20 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    @events = Event.where(user_id: params[:id])
-    @invites = Invitation.where(attendee_id: params[:id])
-    @past_invites = []
-    @upcoming_invites = []
+    @created_events = current_user.events
+    #@invites = Invitation.where(attendee_id: params[:id])
+    #@past_invites = []
+    #@upcoming_invites = []
 
-    @events.each do |event|
-      @invites.each do |invite|
-        if event.date < invite.created_at
-          @past_invites << invite
-        else
-          @upcoming_invites << invite
-        end
-      end
-    end
+    # @events.each do |event|
+    #   @invites.each do |invite|
+    #     if event.date < invite.created_at
+    #       @past_invites << invite
+    #     else
+    #       @upcoming_invites << invite
+    #     end
+    #   end
+    # end
   end
 
   private
@@ -52,6 +52,12 @@ class UsersController < ApplicationController
       redirect_to login_path
     end
   end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
+  
 
   def current_user
     User.find_by(id: cookies[:user_id])
