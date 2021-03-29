@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 class Event < ApplicationRecord
-  belongs_to :creator, foreign_key: :user_id, class_name: "User"
-  has_many :invitations 
-  has_many :attendee, through: :invitations, class_name: "User", foreign_key: :user_id
+  belongs_to :user, foreign_key: true, required: false
+  has_many :invitations
+  has_many :users, through: :invitations
+   
   scope :past_events, -> { where('date < ?', Time.now) }
   scope :upcoming_events, -> { where('date > ?', Time.now) }
 
@@ -13,4 +16,3 @@ class Event < ApplicationRecord
     past_events.order('created_at DESC').pluck(:location, :date, :name, :description)
   end
 end
- 

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[show edit update destroy]
   before_action :user_signed_in?
 
   # GET /events or /events/index
@@ -10,10 +12,7 @@ class EventsController < ApplicationController
 
   # GET /events/1 or /events/1.json
   def show
-    @event = Event.find(params[:id])
-    @creator = Event.find(params[:id]).creator
     @invites = Invitation.where(event_id: params[:id])
-    puts @invites
   end
 
   # GET /events/new
@@ -22,17 +21,15 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events or /events.json
   def create
-    @event =  Event.new(event_params)
-    @event.user_id = cookies[:user_id]
-
+    @event = current_user.events.build(event_params)
+    
     respond_to do |format|
       if @event.save
-        format.html { redirect_to root_path, notice: "Event was successfully created." }
+        format.html { redirect_to root_path, notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +42,7 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: "Event was successfully updated." }
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { render :show, status: :ok, location: @event }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -58,31 +55,33 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:location, :date, :name, :description)
-    end
-    
-    def user_signed_in?
-      if current_user
-        true
-      else
-        redirect_to login_path
-      end
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+    puts 'Yusif'
+  end
 
-    def current_user
-      User.find_by(id: cookies[:user_id])
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:location, :date, :name, :description)
+  end
+
+  def user_signed_in?
+    if current_user
+      true
+    else
+      redirect_to login_path
     end
+  end
+
+  def current_user
+    User.find_by(id: cookies[:user_id])
+  end
 end

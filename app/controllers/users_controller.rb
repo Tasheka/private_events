@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :user_signed_in?, only: %i[index show]
 
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
 
     @events.each do |event|
       @invites.each do |invite|
-        if event.date < invite.created_at 
+        if event.date < invite.created_at
           @past_invites << invite
         else
           @upcoming_invites << invite
@@ -59,4 +61,3 @@ class UsersController < ApplicationController
     redirect_to login_path if current_user.nil?
   end
 end
-  
