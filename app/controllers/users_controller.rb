@@ -23,20 +23,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @created_events = current_user.events
-    #@invites = Invitation.where(attendee_id: params[:id])
-    #@past_invites = []
-    #@upcoming_invites = []
-
-    # @events.each do |event|
-    #   @invites.each do |invite|
-    #     if event.date < invite.created_at
-    #       @past_invites << invite
-    #     else
-    #       @upcoming_invites << invite
-    #     end
-    #   end
-    # end
+    @prev_events = current_user.events.upcoming_events
+    @upcoming_events = current_user.events.past_events
   end
 
   private

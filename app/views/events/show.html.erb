@@ -58,8 +58,8 @@
     <tbody>
       <% @invites.each do |invite| %>
         <tr>
-          <td><%= invite.user.username %></td>
-          <td><%= invite.user.email %></td>
+          <td><%= invite.attendee.username %></td>
+          <td><%= invite.attendee.email %></td>
         </tr>
       <% end %>
     </tbody>
@@ -69,7 +69,7 @@
 <br />
 
 <% if same_as_event_creator(@event.user_id) %>
-  <%= link_to 'Invite', new_invitation_path(@event.id) %> |
+  <%= link_to 'Invite', new_invitation_path(:event_id => @event.id) %> |
   <%= link_to 'Edit', edit_event_path(@event) %>
 <% end %>
 

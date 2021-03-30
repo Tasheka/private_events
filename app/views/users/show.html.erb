@@ -32,7 +32,7 @@
   </thead>
 
   <tbody>
-    <% @created_events.past_events.each do |event| %>
+    <% @prev_events.each do |event| %>
       <tr>
         <td><%= event.location %></td>
         <td><%= event.date %></td>
@@ -62,7 +62,7 @@
   </thead>
 
   <tbody>
-    <% @created_events.upcoming_events.each do |event| %>
+    <% @upcoming_events.each do |event| %>
       <tr>
         <td><%= event.location %></td>
         <td><%= event.date %></td>
@@ -76,6 +76,5 @@
     <% end %>
   </tbody>
 </table>
-
 
 <%= link_to 'Back', root_path %>
