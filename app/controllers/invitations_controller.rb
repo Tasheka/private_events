@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class InvitationsController < ApplicationController
   before_action :user_signed_in?
 
@@ -18,10 +16,10 @@ class InvitationsController < ApplicationController
     @user = User.where(email: email).pluck(:id)
     @invitation = Invitation.new(user_id: @user[0], event_id: params[:event_id])
     if @invitation.save
-        redirect_to root_path
-      else
-        render 'new', event_id: params[:event_id]
-      end
+      redirect_to root_path
+    else
+      render 'new', event_id: params[:event_id]
+    end
   end
 
   def destroy

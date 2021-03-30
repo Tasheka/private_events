@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UsersController < ApplicationController
   before_action :user_signed_in?, only: %i[index show]
   before_action :set_user, only: %i[show]
@@ -45,7 +43,6 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
-  
 
   def current_user
     User.find_by(id: cookies[:user_id])
