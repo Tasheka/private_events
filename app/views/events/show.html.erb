@@ -1,0 +1,80 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Event</h1>
+
+<p>
+  <h3>Creator</h3>
+  
+  <p>
+    <strong>Username:</strong>
+    <%= @event.creator.username %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @event.creator.email %>
+  </p>
+</p>
+
+<br />
+
+<p>
+  <h3>Event Details</h3>
+
+  <p>
+    <strong>Location:</strong>
+    <%= @event.location %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= @event.date %>
+  </p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @event.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @event.description %>
+  </p>
+</p>
+
+<br />
+
+<h3>Invitees</h3>
+
+<p>
+  <table>
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @invites.each do |invite| %>
+        <tr>
+          <td><%= invite.attendee.username %></td>
+          <td><%= invite.attendee.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</p>
+
+<br />
+
+<% if same_as_event_creator(@event.user_id) %>
+  <%= link_to 'Invite', new_invitation_path(:event_id => @event.id) %> |
+  <%= link_to 'Edit', edit_event_path(@event) %>
+<% end %>
+
+<br />
+
+<%= link_to 'Back', root_path %>
+
+
